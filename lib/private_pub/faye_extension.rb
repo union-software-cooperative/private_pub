@@ -5,17 +5,17 @@ module PrivatePub
     # Callback to handle incoming Faye messages. This authenticates both
     # subscribe and publish calls.
     def incoming(message, callback)
-      puts message
       if message["channel"] == "/meta/subscribe"
         authenticate_subscribe(message)
       elsif message["channel"] !~ %r{^/meta/}
         authenticate_publish(message)
       end
+      puts "INCOMING: #{message}"
       callback.call(message)
     end
 
     def outgoing(message, callback)
-      puts message
+      puts "OUTGOING: #{message}"
       callback.call(message)
     end
 
