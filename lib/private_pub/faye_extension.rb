@@ -14,6 +14,11 @@ module PrivatePub
       callback.call(message)
     end
 
+    def outgoing(message, callback)
+      puts message
+      callback.call(message)
+    end
+
   private
 
     # Ensure the subscription signature is correct and that it has not expired.
