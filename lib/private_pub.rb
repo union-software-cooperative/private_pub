@@ -41,7 +41,8 @@ module PrivatePub
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = url.scheme == "https"
       Thread.new do 
-        http.start {|h| h.request(form)}
+        response = http.start {|h| h.request(form)}
+        p response
       end
     end
 
