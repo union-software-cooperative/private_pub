@@ -40,7 +40,9 @@ module PrivatePub
 
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = url.scheme == "https"
-      http.start {|h| h.request(form)}
+      Thread.new do 
+        http.start {|h| h.request(form)}
+      end
     end
 
     # Returns a message hash for sending to Faye
